@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags"
+        lang="en">
+<head>
+
+    <title>MovieWorld - login</title>
+    <th:block th:include="fragment/fragment :: head"></th:block>
+    <link th:href="@{/style-login.css}" rel="stylesheet" type="text/css"/>
+    
+</head>
+<body>
+
+    <header th:fragment="header">
+        <nav id="logo">MovieWorld</nav>
+        <nav><a href="#">Register</a></nav>
+    </header>
+    
+    <div id="search-engine" th:fragment="search-engine">
+        
+        <p>Welcome to MovieWorld</p>
+
+        <form id="search-box" action="/login" method="post">
+
+            <div id="loginError" th:if="${param.error}">
+                Invalid username or password.
+            </div>
+
+                <input type="text" id="username" name="username" placeholder="username"/>
+
+                <input type="password" id="password" name="password" placeholder="password"/>
+
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                <div>
+                    <input type="checkbox" id="remember-me" name="remember-me"/>
+                    <label for="remember-me">Remember me?</label>
+                </div>
+
+                <input type="submit" value="LOGIN"/>
+
+        </form>
+    </div>
+
+    <th:block th:include="fragment/fragment :: footer"></th:block>
+
+</body>
+</html>    

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags">
+<head lang="en">
+    <title>MovieWorld - User Taste</title>
+    <th:block th:include="fragment/fragment :: head"></th:block>
+    <link th:href="@{/style-taste.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+    <th:block th:include="fragment/fragment :: header"></th:block>
+
+    <main>
+        <h1>User profile</h1>
+        <h2>User Id: &nbsp <span th:text="${id}">userId</span></h2>
+        <div id="kpi">
+            <div class="stat">
+                Average rating<br/>
+                <span class="num" th:text="${avgRating}">avgRating</span>
+            </div>
+            <div class="stat">
+                Rated movies<br/>
+                <span class="num" th:text="${countRating}">countRating</span>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="container"></div>
+        </div>
+
+        <div id="popular" th:if="${not #lists.isEmpty(ratedMovies)}">
+            <h2>Rated movies: (user rating / average rating)</h2>
+            <div class="movie" th:each="movie : ${ratedMovies}">
+                <p>&#8226; &nbsp<span th:text="${movie.title}">Movie</span>&nbsp(
+                    <span th:text="${movie.userRating}">Movie</span>&nbsp/&nbsp
+                    <span th:text="${movie.avgRating}">Movie</span>)&nbsp
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <th:block th:include="fragment/fragment :: footer"></th:block>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    <script th:inline="javascript">
+    Highcharts.chart('container', {
+        colors: [
+            '#660000', '#666666', '#00004d'
+            ],
+        chart: {
+            type: 'column',
+            borderRadius: 20
+        },
+        title: {
+            text: 'User taste'
+        },
+        xAxis: {
+            categories: [[${genres}]],
+            crosshair: true
+        },
+         yAxis: [{
+            opposite: false,
+            title: {
+                text: 'Avg Rating'
+            }
+        },
+        {
+            opposite: true,
+            title: {
+                text: 'No Ratings'
+            }
+        }],
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Average Rating - User',
+            data: [[${avgUserRatingByGenre}]],
+            states: {
+                    hover: {
+                        color: '#cc0000'
+                        }
+                    }
+
+        }, {
+            name: 'Average Rating - Overall',
+            data: [[${avgRatingByGenre}]],
+            states: {
+                    hover: {
+                        color: '#a6a6a6'
+                        }
+                    }
+
+        }, {
+            name: 'Number of Ratings - User',
+            data: [[${numberOfUserRatingsByGenre}]],
+            yAxis: 1,
+            states: {
+                    hover: {
+                        color: '#0000cc'
+                        }
+                    }
+
+        }]
+    });
+</script>
+
+</body>
+</html>

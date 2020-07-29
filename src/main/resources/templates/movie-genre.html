@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags">
+<head lang="en">
+    <title>MovieWorld - recommendations by genres</title>
+    <th:block th:include="fragment/fragment :: head"></th:block>
+</head>
+<body>
+
+    <th:block th:include="fragment/fragment :: header"></th:block>
+    <th:block th:include="fragment/fragment :: search-engine"></th:block>
+    <h1>Chosen genre: &nbsp<span th:text="${genre}">genre</span></h1>
+    <th:block th:include="fragment/fragment :: main-recommendations"></th:block>
+    <th:block th:include="fragment/fragment :: footer"></th:block>
+
+</body>
+</html>

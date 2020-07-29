@@ -1,0 +1,69 @@
+main
+{
+    background-color: rgb(13, 13, 13, 0.6);
+    max-width: 80%;
+    border-radius: 20px;
+    margin: auto;
+}
+
+#kpi, #profile
+{
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+}
+
+.num
+{
+    font-size: 1.5rem;
+}
+
+.stat
+{
+    min-width: 30%;
+    background-color: #660000;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.stat:hover
+{
+    background-color: #cc0000;
+}
+
+h1
+{
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+h2
+{
+    font-size: 1rem;
+    text-align: center;
+    padding: 0;
+}
+
+#container
+{
+    margin: 0 auto;
+    padding: 2rem 4rem 0 4rem;
+}
+
+p
+{
+    text-align: left;
+}
+
+.movie
+{
+    min-width: 90%;
+
+}
+
+#popular
+{
+    padding: 2rem;
+}

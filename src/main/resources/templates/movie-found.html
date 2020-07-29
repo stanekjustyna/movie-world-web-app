@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags">
+<head lang="en">
+    <title>MovieWorld - search results</title>
+    <th:block th:include="fragment/fragment :: head"></th:block>
+</head>
+<body>
+
+    <th:block th:include="fragment/fragment :: header"></th:block>
+    <th:block th:include="fragment/fragment :: search-engine"></th:block>
+
+    <div th:if="${#lists.isEmpty(foundMovies)}">
+        <h1>No results found &#9785</h1>
+    </div>
+
+    <div id="main-recommendations">
+        <div th:if="${not #lists.isEmpty(foundMovies)}">
+            <h1>Results found: </h1>
+        </div>
+        <div class="most-popular">
+            <div class="movie" th:each="movie : ${foundMovies}">
+                <a th:href="@{/movie/{movieid}/ (movieid=${movie.movieId})}"
+                   th:parameter1="${id}" th:parameter2="${movie.movieId}"
+                   th:onclick="add_event(this.getAttribute('parameter1'),this.getAttribute('parameter2'), 'viewDetails', '')">
+                    <img class="source" th:src="@{'https://image.tmdb.org/t/p/w500' + ${movie.poster}}"
+                         onerror="this.src='/keep-calm-poster-not-found.png'">
+                    <div class="overlay">
+                        <div class="text" th:text="${movie.title}">Movie title</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <th:block th:include="fragment/fragment :: footer"></th:block>
+
+</body>
+</html>

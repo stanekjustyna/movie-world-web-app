@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:sec="http://www.springframework.org/security/tags">
+<head lang="en">
+    <title>MovieWorld - movie details</title>
+
+    <th:block th:include="fragment/fragment :: head"></th:block>
+
+    <link th:href="@{https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/style-details.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/style-stars.css}" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+
+    <header th:fragment="header">
+        <nav id="logo"><a th:href="@{~/}">MovieWorld</a></nav>
+        <nav>
+            <form id="search-box" th:action="@{/results/title/}" method="post">
+                <input type="text" id="Title" name="title" placeholder="Title"/>
+                <input type="submit" value="Search">
+            </form>
+        </nav>
+        <nav id="user">User: &nbsp<a th:href="@{/taste/}" th:text="${id}">userId</a>
+            <form method="post" action="/logout" id="form-logout">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input id="logout" type="submit" value="Log out"/>
+            </form>
+        </nav>
+    </header>
+
+    <main>
+        <div id="navbar">
+            <div id="genres">
+                <h3>Choose genre:</h3>
+                <div th:each="genre : ${genreList}"
+                     th:parameter1="${id}" th:parameter2="${genre}"
+                     th:onclick="add_event(this.getAttribute('parameter1'), '', 'viewGenre', this.getAttribute('parameter2'))">
+                    <a th:href="@{/genre/{genre}/ (genre=${genre})}" th:text="${genre}">Genres</a>
+                </div>
+            </div>
+        </div>
+        <div id="movie-details">
+            <div><h1 th:text="${movie.title}">Tytuł filmu</h1></div>
+            <div id="content">
+                <div id="poster">
+                    <img id="image" th:src="@{'https://image.tmdb.org/t/p/w500' + ${movie.poster}}"
+                         onerror="this.src='/keep-calm-poster-not-found.png'">
+                    <div class='actions'>
+                        <input type="submit" class="list" th:value="${isOnList}"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"
+                               th:onclick="add_to_list(this.getAttribute('parameter1'),this.getAttribute('parameter2'));"/>
+                        <input type="submit" class="buy" value="Buy" th:parameter1="${id}" th:parameter2="${movie.movieId}"
+                               th:onclick="add_event(this.getAttribute('parameter1'),this.getAttribute('parameter2'), 'buy', '')"/>
+                    </div>
+                </div>
+                <div id="description">
+                    <h3>Description</h3>
+                    <p th:text="${movie.description}">description</p>
+                    <h3>Release year</h3>
+                    <p th:text="${movie.year}">year</p>
+                    <h3>Language</h3>
+                    <p th:text="${movie.language}">language</p>
+                    <h3>Average rating</h3>
+                    <p th:text="${movie.avgRating}">average rating</p>
+                    <h3 th:if="${yourRating != 0}">Your rating</h3>
+                    <p th:if="${yourRating != 0}" th:text="${yourRating}">your rating</p>
+                    <h3>Genre</h3>
+                    <p th:text="${movie.genre}">genre</p>
+                    <h3>Rate movie</h3>
+                    <fieldset class="rating">
+                        <input type="radio" id="star5" name="rating" value="10"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${10}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class = "full" for="star5" title="Perfection"></label>
+
+                        <input type="radio" id="star4half" name="rating" value="9"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${9}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class="half" for="star4half" title="Great"></label>
+
+                        <input type="radio" id="star4" name="rating" value="8"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${8}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class = "full" for="star4" title="Good"></label>
+
+                        <input type="radio" id="star3half" name="rating" value="7"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${7}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class="half" for="star3half" title="Fairly Good"></label>
+
+                        <input type="radio" id="star3" name="rating" value="6"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${6}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class = "full" for="star3" title="Worth Watching"></label>
+
+                        <input type="radio" id="star2half" name="rating" value="5"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${5}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class="half" for="star2half" title="Just OK"></label>
+
+                        <input type="radio" id="star2" name="rating" value="4"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${4}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class = "full" for="star2" title="Pretty Bad"></label>
+
+                        <input type="radio" id="star1half" name="rating" value="3"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${3}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class="half" for="star1half" title="Bad"></label>
+
+                        <input type="radio" id="star1" name="rating" value="2"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${2}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class = "full" for="star1" title="Awful"></label>
+
+                        <input type="radio" id="starhalf" name="rating" value="1"
+                               th:parameter1="${id}" th:parameter2="${movie.movieId}"  th:parameter3="${1}"
+                               th:onclick="add_rating(this.getAttribute('parameter1'),this.getAttribute('parameter2'),this.getAttribute('parameter3'));"/>
+                        <label class="half" for="starhalf" title="Terrible"></label>
+                    </fieldset>
+                </div>
+            </div>
+            <div id="main-recommendations" th:fragment="main-recommendations">
+                <h2>You may also like...</h2>
+                <div class="most-popular">
+                    <div class="movie" th:each="movie : ${similarItemsList}">
+                        <a th:href="@{/movie/{movieid}/ (movieid=${movie.movieId})}"
+                           th:parameter1="${id}" th:parameter2="${movie.movieId}"
+                           th:onclick="add_event(this.getAttribute('parameter1'),this.getAttribute('parameter2'), 'viewDetails', '')">
+                            <img class="source" th:src="@{'https://image.tmdb.org/t/p/w500' + ${movie.poster}}"
+                                 onerror="this.src='/keep-calm-poster-not-found.png'">
+                            <div class="overlay">
+                                <div class="text" th:text="${movie.title}">Movie title</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <th:block th:include="fragment/fragment :: footer"></th:block>
+
+</body>
+</html>

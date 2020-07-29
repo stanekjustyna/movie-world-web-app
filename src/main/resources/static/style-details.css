@@ -1,0 +1,112 @@
+header
+{
+    background-color: rgb(13, 13, 13, 0.6);
+    border-radius: 20px;
+    color: #b3b3b3;
+}
+
+#genres
+{
+    color: #b3b3b3;
+}
+
+#logo
+{
+    font-size: 2rem;
+}
+
+input[type=text]
+{
+  width: 70%;
+}
+
+input[type=submit]
+{
+  width: 30%;
+}
+
+main 
+{
+    display: flex;   
+}
+
+#navbar
+{
+    background-color: rgb(13, 13, 13, 0.6);
+    border-radius: 20px;
+    margin: 20px;
+}
+
+#movie-details
+{
+    flex: 1 1 50%;
+}
+
+#content
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+#genres
+{
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 
+{
+    text-align: center;
+    font-size: 2rem;
+    color: #b3b3b3;
+}
+
+h3
+{
+    padding: 0;
+    text-align: left;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+p
+{
+    text-align: left;
+    font-size: 1rem;
+    margin-right: 30px;
+}
+
+#poster 
+{
+    flex: 1 1 50%;
+}
+
+#description
+{
+    text-align: left;
+    flex: 1 1 50%;
+}
+
+#image
+{
+    max-width: 45%;
+    min-width: 14.0625rem;
+    border-radius: 1.25rem;
+    display: block;
+    margin: auto;
+}
+
+.actions
+{
+    display: flex;
+    justify-content: center;
+}
+
+#main-recommendations
+{
+    margin-top: 3rem;
+}
+
+
+
+

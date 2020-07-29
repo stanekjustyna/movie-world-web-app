@@ -1,0 +1,49 @@
+body
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#search-engine
+{
+    width: 40%;
+    padding: 2.5% 0;
+    margin: 4.5% auto;
+}
+
+
+#search-box
+{
+    align-items : center;
+    flex-direction: column;
+    
+}
+
+
+input[type=text], input[type='password']
+{
+  width: 50%;
+}
+
+input[type=submit]
+{
+  width: 50%;
+}
+
+label
+{
+  font-size: 0.9rem;
+}
+
+#loginError
+{
+  color: #660000;
+  font-size: 1rem;
+  border-radius: 0.312rem;
+  background-color: #ffe6e6;
+  padding: 0.625rem 1.25rem;
+  margin: 0.625rem 0.25%;
+}

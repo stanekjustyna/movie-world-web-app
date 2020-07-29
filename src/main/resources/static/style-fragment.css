@@ -1,0 +1,208 @@
+html
+{
+    font-size: 100%
+}
+
+body
+{
+    background: rgb(0,0,128);
+    background: radial-gradient(circle, rgba(0,0,128,1) 0%, rgba(0,0,51,1) 100%);
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+}
+
+header
+{
+    min-width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100px;
+}
+
+
+#logo
+{
+    font-size: 2.5rem;
+}
+
+#user
+{
+    display: flex;
+    flex-direction: row;
+    min-width: 25%;
+    justify-content: center;
+    align-items: center;
+}
+
+#logout
+{
+    min-width: 100px;
+    margin-left: 30%;
+}
+
+#search-engine
+{
+    text-align: center;
+    font-size: 2rem;
+    max-width: 75%;
+    margin: auto;
+    background-color: rgb(13, 13, 13, 0.6);
+    border-radius: 20px;
+    padding: 0.5%;
+}
+
+#search-box
+{
+    display: flex;
+    justify-content: center;
+}
+
+input[type=text], input[type=password]
+{
+  width: 30%;
+  padding: 0.75rem;
+  margin: 0.625rem 0.25%;
+  display: inline-block;
+  border: none;
+  border-radius: 0.32rem;
+  box-sizing: border-box;
+}
+
+input[type=submit]
+{
+  width: 10%;
+  background-color:#660000;
+  color: white;
+  padding: 0.625rem 1.25rem;
+  margin: 0.625rem 0.25%;
+  border: none;
+  border-radius: 0.312rem;
+  cursor: pointer;
+}
+
+input[type=submit]:focus, input[type=text]:focus, input[type=password]:focus
+{
+    outline:none;
+    border: 2px solid #000033;
+}
+
+input[type=submit]:hover {
+  background-color: #cc0000;
+}
+
+#genres
+{
+    font-size: 0.9375rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+#genres > div
+{
+    padding: 0.625rem;
+}
+
+h2
+{
+    font-size: 1.5rem;
+    padding: 2.5% 5%;
+
+}
+
+.most-popular
+{
+    margin: auto;
+    display: flex;
+    max-width: 90%;
+    justify-content: space-around;
+}
+
+.movie
+{
+    max-width: 10%;
+    position: relative;
+}
+
+.overlay
+{
+    position: absolute;
+    border-radius: 0.3125rem;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 98.5%;
+    width: 80%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000000;
+}
+
+.movie:hover .overlay
+{
+    opacity: 0.85;
+}
+
+.text
+{
+    color: #ffffff;
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.source
+{
+    max-width: 80%;
+    height:auto;
+    border-radius: 0.3125rem;
+}
+
+a:link 
+{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+a:visited 
+{
+    color: #ffffff;
+}
+  
+
+a:hover 
+{
+    color: #e6e6e6;
+}
+  
+a:active 
+{
+    color: #bfbfbf;
+}
+
+footer > p
+{
+    text-align: center;
+    padding: 1.25rem;
+}
+
+h1
+{
+    font-size: 1.5rem;
+    padding: 0 5%;
+
+}
+
+#analytics
+{
+    padding-left: 1.5rem;
+}
